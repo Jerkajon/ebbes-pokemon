@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 80">
+  <g fill="#2e8b3d">
+    <path d="M10 80 Q20 30 35 10 Q38 45 45 80 Z"/>
+    <path d="M40 80 Q55 20 60 5 Q70 40 75 80 Z"/>
+    <path d="M70 80 Q85 25 100 12 Q95 50 105 80 Z"/>
+  </g>
+  <g fill="#3da34f">
+    <path d="M25 80 Q35 40 45 25 Q50 55 55 80 Z"/>
+    <path d="M55 80 Q70 35 85 28 Q80 60 88 80 Z"/>
+  </g>
+</svg>
