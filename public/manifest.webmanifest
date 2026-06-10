@@ -1,0 +1,12 @@
+{
+  "name": "Ebbes Pokemon",
+  "short_name": "Pokemon",
+  "display": "fullscreen",
+  "orientation": "landscape",
+  "background_color": "#87ceeb",
+  "theme_color": "#87ceeb",
+  "start_url": ".",
+  "icons": [
+    { "src": "assets/icon.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}

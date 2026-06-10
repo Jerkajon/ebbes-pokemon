@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="assets/icon.png">
   <title>Ebbes Pokemon</title>
   <style>
     html, body { margin: 0; padding: 0; height: 100%; background: #87ceeb; overflow: hidden; }
@@ -14,5 +16,8 @@
 <body>
   <div id="game"></div>
   <script type="module" src="/src/main.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js')
+  </script>
 </body>
 </html>
