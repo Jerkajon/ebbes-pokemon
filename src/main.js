@@ -1,10 +1,8 @@
 import Phaser from 'phaser'
-
-class BootScene extends Phaser.Scene {
-  create() {
-    this.add.circle(512, 384, 100, 0xe3350d)
-  }
-}
+import { PreloadScene } from './scenes/PreloadScene.js'
+import { StartScene } from './scenes/StartScene.js'
+import { CatchScene } from './scenes/CatchScene.js'
+import { PokedexScene } from './scenes/PokedexScene.js'
 
 new Phaser.Game({
   type: Phaser.AUTO,
@@ -16,5 +14,5 @@ new Phaser.Game({
     width: 1024,
     height: 768,
   },
-  scene: [BootScene],
+  scene: [PreloadScene, StartScene, CatchScene, PokedexScene],
 })
