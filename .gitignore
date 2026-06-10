@@ -1,0 +1,4 @@
+node_modules/
+dist/
+tmp-cries/
+.DS_Store
