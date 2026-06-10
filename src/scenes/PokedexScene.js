@@ -8,6 +8,7 @@ export class PokedexScene extends Phaser.Scene {
 
   create() {
     drawBackdrop(this)
+    this.detailOpen = false
     const caught = new Set(loadCaught())
 
     POKEMON.forEach((p, i) => {
@@ -30,6 +31,8 @@ export class PokedexScene extends Phaser.Scene {
   }
 
   showDetail(p) {
+    if (this.detailOpen) return
+    this.detailOpen = true
     const cover = this.add.rectangle(512, 384, 1024, 768, 0x000000, 0.6).setInteractive()
     const big = this.add.image(512, 350, `pokemon-${p.id}`).setScale(0)
     const name = this.add.text(512, 670, p.name, {
@@ -38,6 +41,7 @@ export class PokedexScene extends Phaser.Scene {
     this.tweens.add({ targets: big, scale: 1, duration: 300, ease: 'back.out' })
     this.sound.play(`cry-${p.id}`, { volume: 0.6 })
     cover.once('pointerdown', () => {
+      this.detailOpen = false
       cover.destroy()
       big.destroy()
       name.destroy()
