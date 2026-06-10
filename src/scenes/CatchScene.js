@@ -1,8 +1,8 @@
 import Phaser from 'phaser'
 import { POKEMON } from '../data/pokemon.js'
 import { pickPokemon } from '../systems/spawner.js'
-import { loadCaught } from '../systems/save.js'
-import { playPop } from '../systems/audio.js'
+import { loadCaught, addCaught } from '../systems/save.js'
+import { playPop, playJingle } from '../systems/audio.js'
 import { drawBackdrop } from '../systems/backdrop.js'
 
 const TUFTS = [
@@ -56,6 +56,59 @@ export class CatchScene extends Phaser.Scene {
   }
 
   showBall(mon, id) {
-    // Fångstsekvensen byggs i Task 8.
+    const ball = this.add.image(512, 700, 'pokeball').setScale(0.6).setInteractive()
+    this.tweens.add({ targets: ball, y: 685, duration: 500, yoyo: true, repeat: -1 })
+    ball.once('pointerdown', () => {
+      this.tweens.killTweensOf(ball)
+      this.throwBall(ball, mon, id)
+    })
+  }
+
+  throwBall(ball, mon, id) {
+    this.tweens.add({
+      targets: ball,
+      x: mon.x, y: mon.y,
+      scale: 0.45,
+      duration: 550,
+      ease: 'quad.out',
+      onComplete: () => {
+        this.tweens.add({
+          targets: mon,
+          scale: 0, x: ball.x, y: ball.y,
+          duration: 250,
+          onComplete: () => this.shakeBall(ball, id),
+        })
+      },
+    })
+  }
+
+  shakeBall(ball, id) {
+    this.tweens.add({
+      targets: ball,
+      angle: { from: -25, to: 25 },
+      duration: 180, yoyo: true, repeat: 3,
+      onComplete: () => {
+        ball.angle = 0
+        this.celebrate(ball, id)
+      },
+    })
+  }
+
+  celebrate(ball, id) {
+    addCaught(id)
+    playJingle()
+    this.add.particles(ball.x, ball.y, 'star', {
+      speed: { min: 150, max: 350 },
+      lifespan: 900,
+      quantity: 14,
+      scale: { start: 1, end: 0 },
+      emitting: false,
+    }).explode(14)
+
+    const big = this.add.image(512, 340, `pokemon-${id}`).setScale(0)
+    this.tweens.add({ targets: big, scale: 0.9, duration: 400, ease: 'back.out' })
+    this.sound.play(`cry-${id}`, { volume: 0.6 })
+
+    this.time.delayedCall(2200, () => this.scene.restart())
   }
 }
