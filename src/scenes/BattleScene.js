@@ -70,13 +70,18 @@ export class BattleScene extends Phaser.Scene {
     if (this.busy || this.battle.won) return
     this.busy = true
 
+    let struck = false
     this.tweens.add({
       targets: this.fighter,
       x: this.opponent.x - 120, y: this.opponent.y + 60,
       duration: 250,
       ease: 'quad.in',
       yoyo: true,
-      onYoyo: () => this.strike(),
+      onYoyo: () => {
+        if (struck) return
+        struck = true
+        this.strike()
+      },
       onComplete: () => {
         this.fighter.setPosition(280, 560)
         if (!this.battle.won) this.fakeCounter()
@@ -106,11 +111,16 @@ export class BattleScene extends Phaser.Scene {
       ease: 'quad.in',
       yoyo: true,
       onYoyo: () => {
+        if (this.wobbling) return
+        this.wobbling = true
         this.tweens.add({
           targets: this.fighter,
           angle: { from: -8, to: 8 },
           duration: 90, yoyo: true, repeat: 2,
-          onComplete: () => { this.fighter.angle = 0 },
+          onComplete: () => {
+            this.fighter.angle = 0
+            this.wobbling = false
+          },
         })
       },
       onComplete: () => {
