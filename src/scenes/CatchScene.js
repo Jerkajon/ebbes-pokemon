@@ -36,6 +36,12 @@ export class CatchScene extends Phaser.Scene {
     home.on('pointerdown', () => this.scene.start('StartScene'))
     const dex = this.add.image(954, 70, 'dex').setInteractive()
     dex.on('pointerdown', () => this.scene.start('PokedexScene'))
+    // Fångstloopen återvänder aldrig självmant till startskärmen — utan genväg
+    // här är striden ohittbar (Eriks iPad-test 2026-06-11).
+    if (loadCaught().length > 0) {
+      const battle = this.add.image(838, 70, 'battle').setInteractive()
+      battle.on('pointerdown', () => this.scene.start('BattleScene'))
+    }
   }
 
   reveal(tuft) {
