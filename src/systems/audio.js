@@ -28,3 +28,8 @@ export function playJingle() {
   const notes = [523, 659, 784, 1047]
   notes.forEach((f, i) => tone(f, i * 0.12, 0.25, 'triangle', 0.3))
 }
+
+export function playHit() {
+  tone(180, 0, 0.12, 'sawtooth', 0.3)
+  tone(90, 0.02, 0.18, 'square', 0.25)
+}
