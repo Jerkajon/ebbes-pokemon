@@ -17,7 +17,9 @@
   <div id="game"></div>
   <script type="module" src="/src/main.js"></script>
   <script>
-    if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js')
+    // Ingen SW i dev — cache-first skulle servera gamla moduler/assets på localhost.
+    if ('serviceWorker' in navigator && location.hostname !== 'localhost')
+      navigator.serviceWorker.register('sw.js')
   </script>
 </body>
 </html>

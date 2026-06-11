@@ -1,5 +1,6 @@
 import Phaser from 'phaser'
 import { drawBackdrop } from '../systems/backdrop.js'
+import { addMeadow } from '../systems/scenery.js'
 import { loadCaught } from '../systems/save.js'
 
 export class StartScene extends Phaser.Scene {
@@ -7,6 +8,7 @@ export class StartScene extends Phaser.Scene {
 
   create() {
     drawBackdrop(this)
+    addMeadow(this, 'start')
 
     const ball = this.add.image(512, 360, 'pokeball').setInteractive()
     this.tweens.add({

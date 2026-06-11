@@ -4,6 +4,7 @@ import { pickPokemon } from '../systems/spawner.js'
 import { loadCaught, addCaught } from '../systems/save.js'
 import { playPop, playJingle } from '../systems/audio.js'
 import { drawBackdrop } from '../systems/backdrop.js'
+import { addMeadow } from '../systems/scenery.js'
 
 const TUFTS = [
   { x: 200, y: 560 },
@@ -17,6 +18,7 @@ export class CatchScene extends Phaser.Scene {
 
   create() {
     drawBackdrop(this)
+    addMeadow(this, 'catch')
     this.busy = false
 
     for (const pos of TUFTS) {

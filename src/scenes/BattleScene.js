@@ -5,6 +5,7 @@ import { loadCaught } from '../systems/save.js'
 import { createBattle } from '../systems/battle.js'
 import { playJingle, playHit } from '../systems/audio.js'
 import { drawBackdrop } from '../systems/backdrop.js'
+import { addMeadow } from '../systems/scenery.js'
 
 export class BattleScene extends Phaser.Scene {
   constructor() { super('BattleScene') }
@@ -41,7 +42,10 @@ export class BattleScene extends Phaser.Scene {
     this.pickerItems = []
 
     drawBackdrop(this)
+    addMeadow(this, 'arena')
     this.children.bringToTop(this.homeBtn)
+    this.add.image(280, 700, 'shadow')
+    this.add.image(744, 540, 'shadow').setScale(0.8).setAlpha(0.7)
 
     this.opponentId = pickPokemon(POKEMON.map(p => p.id), loadCaught())
     this.battle = createBattle(3)
