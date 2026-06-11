@@ -56,8 +56,8 @@ export class CatchScene extends Phaser.Scene {
   }
 
   showBall(mon, id) {
-    const ball = this.add.image(512, 700, 'pokeball').setScale(0.6).setInteractive()
-    this.tweens.add({ targets: ball, y: 685, duration: 500, yoyo: true, repeat: -1 })
+    const ball = this.add.image(512, 690, 'pokeball').setScale(0.6).setInteractive()
+    this.tweens.add({ targets: ball, y: 675, duration: 500, yoyo: true, repeat: -1 })
     ball.once('pointerdown', () => {
       this.tweens.killTweensOf(ball)
       this.throwBall(ball, mon, id)
