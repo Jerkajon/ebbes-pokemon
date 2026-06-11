@@ -18,6 +18,8 @@ export class PreloadScene extends Phaser.Scene {
     this.load.svg('star', 'assets/ui/star.svg', { width: 48, height: 48 })
     this.load.svg('home', 'assets/ui/home.svg', { width: 90, height: 90 })
     this.load.svg('dex', 'assets/ui/dex.svg', { width: 90, height: 90 })
+    this.load.svg('heart', 'assets/ui/heart.svg', { width: 64, height: 64 })
+    this.load.svg('battle', 'assets/ui/battle.svg', { width: 90, height: 90 })
 
     for (const p of POKEMON) {
       this.load.image(`pokemon-${p.id}`, `assets/pokemon/${p.id}.png`)
