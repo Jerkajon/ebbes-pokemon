@@ -35,16 +35,47 @@ bara bilder, ikoner och ljud.
 
 Framsteg sparas automatiskt i localStorage.
 
-### V2 (byggs först när v1 fungerar på iPaden)
+### V2: Strid (detaljdesign, godkänd att byggas 2026-06-11)
 
-Förenklad strid: välj din pokemon → motståndare dyker upp → tryck på din pokemon
-för att attackera → motståndarens tre hjärtan försvinner ett i taget → konfetti.
-Ingen förlust möjlig — motståndaren låtsas-attackerar men kan inte vinna.
+*Erik godkände 2026-06-10 (kväll) att fas 2 byggs direkt efter fas 1-validering,
+före iPad-verifieringen. Kvalitetskrav: inga grafiska buggar, korrekt
+sprite-linjering, hög spelglädje.*
 
-### Uttryckligen INTE i v1
+Flöde (helt utan text, ingen förlust möjlig):
 
-Strid, evolution, items, levlar, fler än ~20 pokemon, ljudinställningar,
-UI-testramverk.
+1. **Stridsknapp på startskärmen** — visas bara när minst en pokemon är fångad
+   (annars finns inget att slåss med).
+2. **Väljarvy** — dina fångade pokemon i ett rutnät (samma layout-idiom som
+   pokédexen). Tryck på en → arenan.
+3. **Arenan** — din pokemon nere till vänster, motståndaren uppe till höger.
+   Motståndare slumpas med samma viktade spawner som gräsgläntan (ofångade
+   oftare → variation). Tre hjärtan visas ovanför motståndaren.
+4. **Attack** — tryck på din pokemon: den gör ett utfall (tween), träffeffekt +
+   ljud, motståndaren skakar och ett hjärta poppar bort. Mellan attackerna gör
+   motståndaren ett låtsas-utfall — din pokemon vinglar till, men inget händer
+   (drama utan risk; spelaren har inga hjärtan).
+5. **Seger** — tredje träffen: motståndaren tippar omkull och tonar bort,
+   stjärnexplosion + jingel + cry, din pokemon studsar i segerglädje.
+   Sedan tillbaka till väljarvyn → nästa match är två tryck bort (snabb loop).
+
+**Designantaganden gjorda utan Erik (han sov) — flagga vid morgonrapport:**
+- Stridsknappen ligger på startskärmen (inte i gräsgläntan).
+- Efter seger återvänder spelet till väljarvyn, inte till startskärmen.
+- Segern ger ingen belöning utöver firandet (ingen fångst av motståndaren) —
+  specens v2-skiss nämnde ingen; kan läggas till senare om Erik vill.
+
+### Sessionslängd och omspelbarhet (krav från Erik 2026-06-10)
+
+- Total speltid ca **20 minuter per session** — spelet har inget "slut",
+  loopar fritt mellan fånga/pokédex/strid.
+- **Hög omspelbarhet**: viktad slump ger variation i både gräsglänta och arena;
+  fångstloop ~30–45 s, stridsloop ~60–90 s → många små belöningscykler per
+  session.
+
+### Uttryckligen INTE i v1/v2
+
+Evolution, items, levlar, fler än ~20 pokemon, ljudinställningar,
+UI-testramverk, förlust-tillstånd i strid.
 
 ## Teknik
 
