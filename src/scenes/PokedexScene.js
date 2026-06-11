@@ -7,7 +7,7 @@ export class PokedexScene extends Phaser.Scene {
   constructor() { super('PokedexScene') }
 
   create() {
-    drawBackdrop(this, 700)
+    drawBackdrop(this, 730)
     this.detailOpen = false
     const caught = new Set(loadCaught())
 
