@@ -12,8 +12,10 @@ bara bilder, ikoner och ljud.
 ## Krav och avgränsningar
 
 - **Enhet:** iPad, touch, Safari (läggs på hemskärmen som webapp).
-- **Grafik:** riktiga Pokemon — sprites/artwork/läten från PokeAPI. Endast privat
-  bruk, publiceras aldrig publikt (Nintendos figurer).
+- **Grafik:** riktiga Pokemon — sprites/artwork/läten från PokeAPI. Avsett för
+  privat bruk (Nintendos figurer). *Ändrat beslut 2026-06-11 (Erik): repot görs
+  publikt eftersom GitHub Pages på privat repo kräver betalplan — obskyr URL,
+  ingen aktiv spridning. Risken accepterad av Erik.*
 - **Designprincip:** en treåring kan inte misslyckas. Inga förluster, ingen text,
   inga menyer som kräver läsning.
 - **Historiska fällor som designen skyddar mot:**
